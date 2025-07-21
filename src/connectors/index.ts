@@ -8,11 +8,12 @@ import { FortmaticConnector } from './Fortmatic'
 import { NetworkConnector } from './NetworkConnector'
 
 const BASE_SEPOLIA_CHAIN_ID = 84532
-const NETWORK_URL = process.env.REACT_APP_NETWORK_URL
+const NETWORK_URL = process.env.REACT_APP_NETWORK_URL || 'https://sepolia.base.org'
 const FORMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY
 const PORTIS_ID = process.env.REACT_APP_PORTIS_ID
 
-export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1')
+// Default to Base Sepolia instead of mainnet
+export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_CHAIN_ID ?? BASE_SEPOLIA_CHAIN_ID.toString())
 
 if (typeof NETWORK_URL === 'undefined') {
   throw new Error(`REACT_APP_NETWORK_URL must be a defined environment variable`)
